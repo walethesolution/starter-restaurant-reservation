@@ -16,6 +16,7 @@ const {
   validateCurrentStatus,
   validateStatusUpdate,
 } = require("../utils/validation");
+
 const VALID_PROPERTIES = [
   "first_name",
   "last_name",
@@ -75,20 +76,10 @@ async function reservationExist(req, res, next) {
   next({ status: 404, message: reservation_id });
 }
 
-async function checkQueryParams(req, res, next) {
-  const { date = "", mobile_number = "" } = req.query;
-  if (date) {
-    res.locals.reservations = await service.listByDate(date);
-  } else if (mobile_number) {
-    res.locals.reservations = await service.search(mobile_number);
-  }
-  next();
-}
-
 async function list(req, res) {
   const { date, mobile_number } = req.query;
   if (date) {
-    const data = await service.list(date);
+    const data = await service.listAll(date);
     res.json({ data });
   } else {
     const data = await service.searchByPhone(mobile_number);

@@ -45,7 +45,7 @@ function DashboardButtons({ reservationsDate }) {
       </button>
       <button
         type="button"
-        class="btn btn-secondary btn-sm col-auto"
+        className="btn btn-secondary btn-sm col-auto"
         onClick={nextButtonClickHandler}
       >
         Next
