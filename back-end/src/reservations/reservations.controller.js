@@ -87,8 +87,6 @@ async function checkQueryParams(req, res, next) {
 
 async function list(req, res) {
   const { date, mobile_number } = req.query;
-  console.log("date: ", date);
-  console.log("phone: ", mobile_number);
   if (date) {
     const data = await service.list(date);
     res.json({ data });

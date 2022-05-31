@@ -1,8 +1,19 @@
 const knex = require("../db/connection");
 
-function list() {
-  return knex("reservations").select("*").orderBy("reservation_time");
+function list(reservation_date) {
+  return knex("reservations")
+    .select("*")
+    .where({ reservation_date: reservation_date })
+    .orderBy("reservation_time");
 }
+
+// function listReservationsOnQueriedDate(reservation_date) {
+//   return knex("reservations")
+//     .select("*")
+//     .where({ reservation_date: reservation_date })
+//     .whereNot({ status: "finished" })
+//     .orderBy("reservation_time");
+// }
 
 function listByDate(reservation_date) {
   return knex("reservations").select("*").where({ reservation_date });
