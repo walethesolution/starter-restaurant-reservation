@@ -78,8 +78,10 @@ async function reservationExist(req, res, next) {
 
 async function list(req, res) {
   const { date, mobile_number } = req.query;
+  console.log("the date is: " + date, "the mobile number is: " + mobile_number);
   if (date) {
     const data = await service.listAll(date);
+    console.log(data);
     res.json({ data });
   } else {
     const data = await service.searchByPhone(mobile_number);
